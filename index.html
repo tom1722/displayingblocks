@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="background" style="background-image: url(ninja1/img/black_bg.jpg); height: 100vh; width: 100vw;">
+        <div id="character" style="position:absolute; top:100px; left:450px; background-image: url(ninja1/img/down1.png); width:59px; height:86px"></div>
+    </div>
+    <script>
+    var leftValue = 450;  topValue = 100; direction = 'down'; step = 1;
+    function update(){
+        if(step == 1){
+            step = 2;
+        }
+        else{
+            step = 1;
+        }
+        document.getElementById('character').style.top = topValue + 'px';
+        document.getElementById('character').style.left = leftValue + 'px';
+        document.getElementById('character').style.backgroundImage = "url('ninja1/img/"+direction+step+".png')"
+        
+                
+    }
+ 
+    document.onkeydown = function(e){
+        console.log(e);
+        if(e.keyCode == 37 && leftValue > 0){
+            leftValue = leftValue - 10;
+            direction = 'left';
+        }
+        else if(e.keyCode == 38 && topValue > 0){
+            topValue = topValue - 10;
+            direction = 'top';
+        }
+        else if(e.keyCode == 39 && leftValue < 600){
+            leftValue = leftValue + 10;
+            direction = 'right';
+        }
+        else if(e.keyCode == 40 && topValue < 600){
+            topValue = topValue + 10;
+            direction = 'down';
+        }
+        update();
+    }
+
+   
+
+    </script>
+</body>
+</html>
